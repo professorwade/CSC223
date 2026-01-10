@@ -1,3 +1,5 @@
+package week1;
+
 public class Flower {
     private String name;
     private int petals;

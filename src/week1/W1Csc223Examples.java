@@ -1,3 +1,5 @@
+package week1;
+
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
@@ -54,7 +56,7 @@ public class W1Csc223Examples {
         System.out.println("You entered " + charVal);
     }
 
-    // 1.10.2 GameEntry in Main
+    // 1.10.2 week1.GameEntry in Main
 
     /*
     1.10.3 Write a short Java method, isMultiple, that takes two long values n & m and returns true
@@ -181,11 +183,11 @@ public class W1Csc223Examples {
 
         // 1.10.2
         System.out.println("1.10.2");
-        GameEntry [] A = new GameEntry[5];
+        GameEntry[] A = new GameEntry[5];
         for (int i = 0; i < A.length; i++) {
             A[i] = new GameEntry();
         }
-        GameEntry [] B = A;
+        GameEntry[] B = A;
         A[0].score = 500;
         System.out.println("A[0].score is " + A[0].score);
         System.out.println("B[0].score is " + B[0].score);
@@ -215,10 +217,10 @@ public class W1Csc223Examples {
         System.out.println("1.10.9");
         System.out.println("Remove punctuation from \"Let's try, Mike!\" -> " + stripPunctuation("Let's try, Mike!"));
 
-        // 1.10.10 (Flower class)
+        // 1.10.10 (week1.Flower class)
         System.out.println("1.10.10");
         Flower f = new Flower("Rose", 32, 5.99f);
-        System.out.println("Flower: " + f.getName() + ", Petals: " + f.getPetals() + ", Price: $" + f.getPrice());
+        System.out.println("week1.Flower: " + f.getName() + ", Petals: " + f.getPetals() + ", Price: $" + f.getPrice());
         f.setPrice(6.50f);
         System.out.println("New price: $" + f.getPrice());
 
