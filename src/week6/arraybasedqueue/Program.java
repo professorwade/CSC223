@@ -6,6 +6,9 @@ public class Program {
         ArrayQueue boundedQueue = new ArrayQueue(4);
         ArrayQueue unboundedQueue = new ArrayQueue();
 
+        // potential error test cast
+        //ArrayQueue unboundedQueue = new ArrayQueue(0);
+
         // Enqueue 8 items in each
         System.out.println("Enqueueing values 1 through 8 to each queue");
         for (int i = 1; i <= 8; i++) {
