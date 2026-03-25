@@ -14,7 +14,8 @@ class Program {
 
         // Display all items
         System.out.println("All items:");
-        products.forEach((item, price) -> System.out.println("  " + item + " -> " + price));
+        products.forEach((item, price) ->
+                System.out.println("  " + item + " -> " + price));
 
         // Declare an item to search for
         String itemName = "Paper towels";
