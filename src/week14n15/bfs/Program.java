@@ -1,7 +1,6 @@
-package week14.bfs;
+package week14n15.bfs;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Program {
     public static void main(String[] args) {

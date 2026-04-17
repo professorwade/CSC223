@@ -1,4 +1,4 @@
-package week14.dijkstra;
+package week14n15.dfs;
 
 class Edge {
     public Vertex fromVertex;

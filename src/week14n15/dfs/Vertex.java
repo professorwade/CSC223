@@ -1,4 +1,4 @@
-package week14.bfs;
+package week14n15.dfs;
 
 class Vertex {
     public String label;

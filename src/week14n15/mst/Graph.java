@@ -1,12 +1,11 @@
-package week14.bfs;
+package week14n15.mst;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 class Graph {
     // Maps a vertex to an ArrayList of all edges that start from that vertex
@@ -64,6 +63,15 @@ class Graph {
         return result;
     }
 
+    // Returns a collection of all edges in the graph
+    public Collection<Edge> getEdges() {
+        HashSet<Edge> edges = new HashSet<Edge>();
+        for (ArrayList<Edge> edgeList : fromEdges.values()) {
+            edges.addAll(edgeList);
+        }
+        return edges;
+    }
+
     // Returns the collection of edges with the specified fromVertex
     public Collection<Edge> getEdgesFrom(Vertex fromVertex) {
         return fromEdges.get(fromVertex);
@@ -108,36 +116,42 @@ class Graph {
         return false;
     }
 
-    public void breadthFirstSearch(Vertex startVertex, VertexVisitor visitor,
-                                   HashMap<Vertex, Double> distances) {
+    // Returns a list of edges representing the graph's minimum spanning tree.
+    // Uses Kruskal's minimum spanning tree algorithm.
+    public List<Edge> minimumSpanningTree() {
+        // Get a collection of the graph's edges
+        Collection<Edge> allEdges = getEdges();
 
-        HashSet<Vertex> discoveredSet = new HashSet<Vertex>();
-        Queue<Vertex> frontierQueue = new LinkedList<Vertex>();
+        // edgeQueue starts as a priority queue of all edges from the graph
+        PriorityQueue<Edge> edgeQueue = new PriorityQueue<Edge>(allEdges.size(), new EdgeComparator());
+        edgeQueue.addAll(allEdges);
 
-        // startVertex has a distance of 0 from itself
-        distances.put(startVertex, 0.0);
+        // Initialize the collection of vertex sets
+        VertexSetCollection vertexSets = new VertexSetCollection(getVertices());
 
-        frontierQueue.add(startVertex); // Enqueue startVertex in frontierQueue
-        discoveredSet.add(startVertex); // Add startVertex to discoveredSet
+        // resultList is initially an empty list
+        ArrayList<Edge> resultList = new ArrayList<Edge>();
 
-        while (frontierQueue.size() > 0) {
-            // Dequeue a vertex
-            Vertex currentVertex = frontierQueue.remove();
+        while (edgeQueue.size() > 0) {
+            // Remove edge with minimum weight from edgeQueue
+            Edge nextEdge = edgeQueue.remove();
 
-            // Visit the vertex
-            visitor.visit(currentVertex);
+            // set1 = set in vertexSets containing nextEdge's 'from' vertex
+            HashSet<Vertex> set1 = vertexSets.getSet(nextEdge.fromVertex);
 
-            // Enqueue undiscovered adjacent vertices
-            for (Edge edge : getEdgesFrom(currentVertex)) {
-                Vertex adjacentVertex = edge.toVertex;
-                if (!discoveredSet.contains(adjacentVertex)) {
-                    frontierQueue.add(adjacentVertex);
-                    discoveredSet.add(adjacentVertex);
+            // set2 = set in vertexSets containing nextEdge's 'to' vertex
+            HashSet<Vertex> set2 = vertexSets.getSet(nextEdge.toVertex);
 
-                    // Distance of adjacentVertex is 1 more than currentVertex
-                    distances.put(adjacentVertex, distances.get(currentVertex) + 1);
-                }
+            // If the 2 sets are distinct, then merge
+            if (set1 != set2) {
+                // Add nextEdge to resultList
+                resultList.add(nextEdge);
+
+                // Merge the 2 sets within the collection
+                vertexSets.merge(set1, set2);
             }
         }
+
+        return resultList;
     }
 }

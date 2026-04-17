@@ -1,4 +1,4 @@
-package week14.dijkstra;
+package week14n15.dijkstra;
 
 class PathVertexInfo implements Comparable<PathVertexInfo> {
     public Vertex vertex;
