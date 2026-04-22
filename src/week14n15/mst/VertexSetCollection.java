@@ -23,6 +23,14 @@ class VertexSetCollection {
         return vertexMap.get(vertex);
     }
 
+    void printSetEntry(Vertex v, HashSet<Vertex> s) {
+        String vertices = "";
+        for (Vertex vertex : s) {
+            vertices = vertices + vertex.label + ", ";
+        }
+        System.out.println(v.label + " : " + vertices);
+    }
+
     // Merges two distinct sets from the collection. Remaps each vertex from the
     // two sets to the merged set.
     public void merge(HashSet<Vertex> vertexSet1, HashSet<Vertex> vertexSet2) {
@@ -31,8 +39,10 @@ class VertexSetCollection {
         mergedSet.addAll(vertexSet2);
 
         // Now remap all vertices in the merged set
+        System.out.println("Merged Set:");
         for (Vertex vertex : mergedSet) {
             vertexMap.put(vertex, mergedSet);
+            printSetEntry(vertex, mergedSet);
         }
     }
 }
