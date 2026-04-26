@@ -41,20 +41,17 @@ class Huffman {
                     item.getKey(), item.getValue());
             nodes.add(newLeaf);
         }
-
         // Make parent nodes up to the root
         while (nodes.size() > 1) {
             // Dequeue two lowest priority nodes
             HuffmanTreeNode left = nodes.poll();
             HuffmanTreeNode right = nodes.poll();
-
             // Build and enqueue parent for the two nodes
             nodes.add(new HuffmanTreeNode(left, right));
         }
         return nodes.peek();
     }
 
-    // buildFrequenceTable(), buildTree(), and getCodes() methods omitted
     public String compress(HashMap<Character, String> codes, HuffmanTreeNode root, String inputString) {
         // Build the compressed result
         String result = "";
