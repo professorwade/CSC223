@@ -1,4 +1,4 @@
-package week14.graphclass;
+package week14n15.graphclass;
 
 class Vertex {
     public String label;
